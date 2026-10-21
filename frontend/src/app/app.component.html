@@ -1,0 +1,60 @@
+<main class="shell">
+  <header>
+    <p class="eyebrow">FULL-STACK INTERVIEW PRACTICE</p>
+    <h1>Article Explorer</h1>
+    <p>Search articles and filter by topic tags.</p>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <h2>Filter by tag</h2>
+      <p class="hint">Select one or more topics (OR matching)</p>
+
+      <div class="filter-list">
+        <label *ngFor="let tag of tags" class="tag-option">
+          <input type="checkbox" [checked]="selectedTags.includes(tag)" (change)="toggleTag(tag)" />
+          {{ tag }}
+        </label>
+      </div>
+
+      <button class="clear" (click)="clear()">Clear all filters</button>
+    </aside>
+
+    <section class="results">
+      <div class="toolbar">
+        <input
+          aria-label="Search articles"
+          type="search"
+          [(ngModel)]="keyword"
+          (ngModelChange)="onKeywordChange()"
+          placeholder="Search titles or summaries..."
+        />
+        <span>{{ totalElements }} articles found</span>
+      </div>
+
+      <p class="error" *ngIf="error">{{ error }}</p>
+      <p *ngIf="loading">Loading...</p>
+
+      <div class="cards">
+        <article *ngFor="let article of articles" class="article-card">
+          <span class="id">ARTICLE #{{ article.id }}</span>
+          <h3>{{ article.title }}</h3>
+          <p>{{ article.summary }}</p>
+          <div class="pills">
+            <span *ngFor="let tag of article.tags" class="pill">{{ tag }}</span>
+          </div>
+        </article>
+      </div>
+
+      <p *ngIf="!loading && !error && articles.length === 0">
+        No matching articles. Try clearing filters.
+      </p>
+
+      <footer class="pagination">
+        <button (click)="movePage(-1)" [disabled]="page === 0">Previous</button>
+        <span>Page {{ totalPages === 0 ? 0 : page + 1 }} of {{ totalPages }}</span>
+        <button (click)="movePage(1)" [disabled]="page >= totalPages - 1">Next</button>
+      </footer>
+    </section>
+  </div>
+</main>
