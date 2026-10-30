@@ -256,24 +256,3 @@ Reliability	Validate API inputs and standardize error responses	Future option
 Deployment	Document production build/deployment	Future option
 
 
-Documentation update checklist
-Whenever you make a meaningful change:
-1. Update the relevant feature or architecture section.
-2. Add or correct startup commands and configuration values.
-3. Document new APIs with verified paths and JSON examples.
-4. Add useful SQL queries to the reference section.
-5. Record new prerequisites and known troubleshooting issues.
-6. Commit the README alongside the code change.
-Change log
-Date	Documentation update
-2026-10-21	Established project handbook, H2 connection guide, SQL query reference, and troubleshooting notes.
-
-
-Git workflow
-From the repository root:
-git status
-git add README.md
-git commit -m "docs: create project handbook and H2 SQL reference"
-git push
-If this is the first push for a new branch or repository, configure the GitHub remote and upstream branch before using git push.
-Documentation principle: Keep this README aligned with the code and current local configuration; distinguish what is implemented from ideas for the next iteration.
